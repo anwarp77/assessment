@@ -7,7 +7,7 @@ def primers():
     """
     This funtion reads in the primers.fasta file and creates a dictionary
     that has the markers as key and the forwards and revers primers
-    as value
+    as value.
     :return dict_primers: dictionary with marker as key and forward and reverse
     primers as value
     """
@@ -50,11 +50,11 @@ def checkprimer(cp_primers, cp_read, c):
         revcomp_fw_primer = Seq(fw_primer).reverse_complement()
         revcomp_rv_primer = Seq(rv_primer).reverse_complement()
 
-        #search for the fw_primer and rv_primer in the original sequence and RC sequence
+        #search for the fw_primer and rv_primer in the original sequence and RC sequence.
         fw_match = re.search(f"{fw_primer}.*{rv_primer}", sequence)
         rv_match = re.search(f"{fw_primer}.*{rv_primer}", str(rev_comp_seq))
 
-        #splicing the sequence and RC sequence if it has a match
+        #splicing the sequence and RC sequence if it has a match.
         if fw_match:
             f_index = fw_match.start() + len(fw_primer)
             r_index = fw_match.end() - len(rv_primer)
@@ -68,7 +68,7 @@ def checkprimer(cp_primers, cp_read, c):
             score = score[f_index:r_index]
             RC = "True"
 
-        # if RC is None it means the read doesn't contain a primer and will not be stored in the database
+        # if RC is None it means the read doesn't contain a primer and will not be stored in the database.
         if RC is not None:
             insert_read = """
                 INSERT INTO reads VALUES (?, ?, ?, ?, ?)
@@ -99,7 +99,7 @@ def inlezen(c):
 
 def db_queries(c):
     """
-    This function prints out interesting queries
+    This function prints out some interesting queries.
     :param c: cursor database
     :return: None
     """
